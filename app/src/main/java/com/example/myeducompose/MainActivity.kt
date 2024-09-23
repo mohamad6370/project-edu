@@ -1,5 +1,6 @@
 package com.example.myeducompose
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -33,65 +34,62 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
             MyEduComposeTheme {
-                SetUi()
+               SetUi(this )
             }
         }
-
     }
-    @Composable
-    fun SetUi(){
-        Column {
-            Text(
-                text = "mmadmadi",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 50.dp)
-                    .background(color = Color.LightGray)
-                    .padding(30.dp),
+}
+@Composable
+fun SetUi(context: Context?){
+    Column {
+        Text(
+            text = "mmadmadi",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 50.dp)
+                .background(color = Color.LightGray)
+                .padding(30.dp),
 
 
-                fontStyle = FontStyle.Italic,
-                fontWeight = FontWeight.Bold,
-                fontSize = 28.sp,
-                textAlign = TextAlign.Center,
-                color = colorResource(id = R.color.teal_700),
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
+            fontSize = 28.sp,
+            textAlign = TextAlign.Center,
+            color = colorResource(id = R.color.teal_700),
+        )
+        Button(onClick = {
+            Toast.makeText(
+                context,
+                "test app",
+                Toast.LENGTH_SHORT
+            ).show()
+        },
+            modifier = Modifier
+                .width(200.dp)
+                .padding(start = 70.dp),
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color. Blue
             )
-            Button(onClick = {
-                Toast.makeText(
-                    this@MainActivity,
-                    "test app",
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-                modifier = Modifier
-                    .width(200.dp)
-                    .padding(start = 70.dp),
-                shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color. Blue
-                )
-            ) {
-                Text(
-                    text = "Click",
-                    color = Color.White
-                )
-            }
-        }}
-
-    @Preview(showBackground = true,
-        name = "Test",
-        showSystemUi = true,
-        device = Devices.PIXEL_6_PRO)
-    @Composable
-    fun TestPreview() {
-        SetUi()
+        ) {
+            Text(
+                text = "Click",
+                color = Color.White
+            )
+        }
     }
 }
 
 
 
 
-
-
+@Preview(showBackground = true,
+    showSystemUi = true,
+    device = Devices.PIXEL_6_PRO)
+@Composable
+fun GreetingPreview() {
+    MyEduComposeTheme {
+        SetUi(null)
+    }
+}
